@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">AnkoBasicCalculator</string>
+    <string name="add">plus</string>
+    <string name="subtract">minus</string>
+    <string name="multiply">times</string>
+    <string name="divide">divided by</string>
+    <string name="calculate">Calculate</string>
+</resources>
