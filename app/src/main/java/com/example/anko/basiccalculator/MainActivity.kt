@@ -59,7 +59,10 @@ class MainActivity : AppCompatActivity() {
             RADIO_BUTTON_ADD      -> toast("${firstNum + secondNum}")
             RADIO_BUTTON_SUBTRACT -> toast("${firstNum - secondNum}")
             RADIO_BUTTON_MULTIPLY -> toast("${firstNum * secondNum}")
-            RADIO_BUTTON_DIVIDE   -> toast("${firstNum / secondNum}")
+            RADIO_BUTTON_DIVIDE   -> {
+                if (secondNum.equals(0)) toast("Cannot divide by 0")
+                else toast("${firstNum / secondNum}")
+            }
             else -> toast("Please select an operation")
         }
     }
