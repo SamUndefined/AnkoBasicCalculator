@@ -2,7 +2,7 @@ package com.example.anko.basiccalculator
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
+import android.text.method.DigitsKeyListener
 import android.widget.Button
 import android.widget.EditText
 import android.widget.RadioGroup
@@ -30,6 +30,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun attachListeners() {
+        //Ensure only one decimal point and plus/minus sign can be written
+        for (editText in listOf(firstEditText, secondEditText)) {
+            editText.keyListener = DigitsKeyListener.getInstance(true,true)
+        }
+
         //Set second editText's imeOptions to press the calculate button
         secondEditText.setOnEditorActionListener { textView, i, keyEvent ->
             buttonCalculate.performClick()

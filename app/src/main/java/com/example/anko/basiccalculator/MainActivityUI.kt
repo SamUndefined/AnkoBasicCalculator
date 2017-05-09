@@ -45,7 +45,8 @@ class MainActivityUI : AnkoComponent<MainActivity> {
             when (view) {
                 is EditText -> {
                     view.hint = "Enter Number"
-                    view.inputType = InputType.TYPE_CLASS_NUMBER
+                    view.singleLine = true
+                    view.setRawInputType(InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_FLAG_DECIMAL)
                 }
             }
         }
