@@ -6,7 +6,6 @@ import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.RadioGroup
-import com.example.anko.basiccalculator.R.string.calculate
 import org.jetbrains.anko.*
 
 class MainActivity : AppCompatActivity() {
@@ -51,8 +50,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun calculate(firstVal: String, secondVal: String) {
-        val firstNum = firstVal.toFloat()
-        val secondNum = secondVal.toFloat()
+        val firstNum = firstVal.toDouble()
+        val secondNum = secondVal.toDouble()
         val checkedButton = radioOperations.checkedRadioButtonId
 
         when(checkedButton) {
@@ -60,8 +59,12 @@ class MainActivity : AppCompatActivity() {
             RADIO_BUTTON_SUBTRACT -> toast("${firstNum - secondNum}")
             RADIO_BUTTON_MULTIPLY -> toast("${firstNum * secondNum}")
             RADIO_BUTTON_DIVIDE   -> {
-                if (secondNum.equals(0)) toast("Cannot divide by 0")
-                else toast("${firstNum / secondNum}")
+                if(secondNum.equals(0.0)){
+                    toast("Cannot divide by 0")
+                }
+                else {
+                    toast("${firstNum.div(secondNum)}")
+                }
             }
             else -> toast("Please select an operation")
         }
