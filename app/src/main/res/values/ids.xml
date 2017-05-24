@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="edit_first_number" type="id"/>
+    <item name="edit_second_number" type="id"/>
+    <item name="radio_group" type="id"/>
+    <item name="radio_btn_add" type="id"/>
+    <item name="radio_btn_subtract" type="id"/>
+    <item name="radio_btn_multiply" type="id"/>
+    <item name="radio_btn_divide" type="id"/>
+    <item name="btn_calculate" type="id"/>
+</resources>

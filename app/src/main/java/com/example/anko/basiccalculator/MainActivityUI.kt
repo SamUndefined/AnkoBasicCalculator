@@ -10,24 +10,24 @@ class MainActivityUI : AnkoComponent<MainActivity> {
         verticalLayout {
             padding = dip(50)
             editText {
-                id = ENTER_FIRST_NUMBER
+                id = R.id.edit_first_number
             }
             radioGroup {
-                id = RADIO_OPERATIONS
+                id = R.id.radio_group
                 radioButton {
-                    id = RADIO_BUTTON_ADD
+                    id = R.id.radio_btn_add
                     textResource = R.string.add
                 }
                 radioButton {
-                    id = RADIO_BUTTON_SUBTRACT
+                    id = R.id.radio_btn_subtract
                     textResource = R.string.subtract
                 }
                 radioButton {
-                    id = RADIO_BUTTON_MULTIPLY
+                    id = R.id.radio_btn_multiply
                     textResource = R.string.multiply
                 }
                 radioButton {
-                    id = RADIO_BUTTON_DIVIDE
+                    id = R.id.radio_btn_divide
                     textResource = R.string.divide
                 }
             }.lparams {
@@ -35,11 +35,11 @@ class MainActivityUI : AnkoComponent<MainActivity> {
                 verticalMargin = dip(25)
             }
             editText {
-                id = ENTER_SECOND_NUMBER
+                id = R.id.edit_second_number
             }
             button {
                 textResource = R.string.calculate
-                id = BUTTON_CALCULATE
+                id = R.id.btn_calculate
             }
         }.applyRecursively { view ->
             when (view) {
@@ -52,13 +52,3 @@ class MainActivityUI : AnkoComponent<MainActivity> {
         }
     }
 }
-
-//Package protected View IDs
-@JvmField val ENTER_FIRST_NUMBER = 1
-@JvmField val ENTER_SECOND_NUMBER = 2
-@JvmField val RADIO_OPERATIONS = 3
-@JvmField val RADIO_BUTTON_ADD = 4
-@JvmField val RADIO_BUTTON_SUBTRACT = 5
-@JvmField val RADIO_BUTTON_MULTIPLY = 6
-@JvmField val RADIO_BUTTON_DIVIDE = 7
-@JvmField val BUTTON_CALCULATE = 8

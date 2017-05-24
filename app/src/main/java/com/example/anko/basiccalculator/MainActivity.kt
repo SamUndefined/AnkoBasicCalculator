@@ -23,10 +23,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun findViews() {
-        firstEditText = find<EditText>(ENTER_FIRST_NUMBER)
-        secondEditText = find<EditText>(ENTER_SECOND_NUMBER)
-        radioOperations = find(RADIO_OPERATIONS)
-        buttonCalculate = find(BUTTON_CALCULATE)
+        firstEditText = find(R.id.edit_first_number)
+        secondEditText = find(R.id.edit_second_number)
+        radioOperations = find(R.id.radio_group)
+        buttonCalculate = find(R.id.btn_calculate)
     }
 
     fun attachListeners() {
@@ -60,10 +60,10 @@ class MainActivity : AppCompatActivity() {
         val checkedButton = radioOperations.checkedRadioButtonId
 
         when(checkedButton) {
-            RADIO_BUTTON_ADD      -> toast("${firstNum + secondNum}")
-            RADIO_BUTTON_SUBTRACT -> toast("${firstNum - secondNum}")
-            RADIO_BUTTON_MULTIPLY -> toast("${firstNum * secondNum}")
-            RADIO_BUTTON_DIVIDE   -> {
+            R.id.radio_btn_add      -> toast("${firstNum + secondNum}")
+            R.id.radio_btn_subtract -> toast("${firstNum - secondNum}")
+            R.id.radio_btn_multiply -> toast("${firstNum * secondNum}")
+            R.id.radio_btn_divide   -> {
                 if(secondNum.equals(0.0)){
                     toast("Cannot divide by 0")
                 }
