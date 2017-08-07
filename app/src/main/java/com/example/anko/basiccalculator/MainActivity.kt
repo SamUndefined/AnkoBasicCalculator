@@ -10,68 +10,63 @@ import org.jetbrains.anko.*
 
 class MainActivity : AppCompatActivity() {
 
-    lateinit var firstEditText: EditText
-    lateinit var secondEditText: EditText
-    lateinit var radioOperations: RadioGroup
-    lateinit var buttonCalculate: Button
+    private val firstEditText by lazy { find<EditText>(R.id.edit_first_number) }
+    private val secondEditText by lazy { find<EditText>(R.id.edit_second_number) }
+    private val radioOperations by lazy { find<RadioGroup>(R.id.radio_group) }
+    private val buttonCalculate by lazy { find<Button>(R.id.btn_calculate) }
+
+    private val firstVal: String
+        get() = firstEditText.text.toString()
+
+    private val secondVal: String
+        get() = secondEditText.text.toString()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         MainActivityUI().setContentView(this)
-        findViews()
-        attachListeners()
+        restrictInput()
+        makeButtonClickable()
     }
 
-    fun findViews() {
-        firstEditText = find(R.id.edit_first_number)
-        secondEditText = find(R.id.edit_second_number)
-        radioOperations = find(R.id.radio_group)
-        buttonCalculate = find(R.id.btn_calculate)
-    }
-
-    fun attachListeners() {
+    private fun restrictInput() {
         //Ensure only one decimal point and plus/minus sign can be written
         for (editText in listOf(firstEditText, secondEditText)) {
-            editText.keyListener = DigitsKeyListener.getInstance(true,true)
+            editText.keyListener = DigitsKeyListener.getInstance(true, true)
         }
+    }
 
-        //Set second editText's imeOptions to press the calculate button
-        secondEditText.setOnEditorActionListener { textView, i, keyEvent ->
+    private fun makeButtonClickable() {
+        //Set second editText's imeOptions to press the answer button
+        secondEditText.setOnEditorActionListener { _, _, _ ->
             buttonCalculate.performClick()
         }
 
-        //Set calculate button's on click method
+        //Set answer button's on click method
         buttonCalculate.onClick {
-            val firstVal = firstEditText.text.toString()
-            val secondVal = secondEditText.text.toString()
-
             if (firstVal.isEmpty() || secondVal.isEmpty()) {
                 toast("Please Enter 2 values")
             }
             else {
-                calculate(firstVal, secondVal)
+                toast(answer())
             }
         }
     }
 
-    fun calculate(firstVal: String, secondVal: String) {
+    private fun answer(): String {
         val firstNum = firstVal.toDouble()
         val secondNum = secondVal.toDouble()
         val checkedButton = radioOperations.checkedRadioButtonId
 
-        when(checkedButton) {
-            R.id.radio_btn_add      -> toast("${firstNum + secondNum}")
-            R.id.radio_btn_subtract -> toast("${firstNum - secondNum}")
-            R.id.radio_btn_multiply -> toast("${firstNum * secondNum}")
-            R.id.radio_btn_divide   -> {
-                if(secondNum.equals(0.0)){
-                    toast("Cannot divide by 0")
-                }
-                else {
-                    toast("${firstNum.div(secondNum)}")
-                }
+        return when (checkedButton) {
+            R.id.radio_btn_add -> "${firstNum + secondNum}"
+            R.id.radio_btn_subtract -> "${firstNum - secondNum}"
+            R.id.radio_btn_multiply -> "${firstNum * secondNum}"
+            R.id.radio_btn_divide -> {
+                if (secondNum.equals(0.0)) "Cannot divide by 0"
+                else "${firstNum.div(secondNum)}"
             }
-            else -> toast("Please select an operation")
+            else -> "Please select an operation"
         }
     }
 }
