@@ -1,4 +1,4 @@
-package com.example.anko.basiccalculator;
+package com.drakkun.anko.basiccalculator;
 
 import org.junit.Test;
 

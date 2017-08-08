@@ -1,4 +1,4 @@
-package com.example.anko.basiccalculator
+package com.drakkun.anko.basiccalculator
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle

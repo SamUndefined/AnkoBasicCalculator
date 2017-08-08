@@ -1,4 +1,4 @@
-package com.example.anko.basiccalculator;
+package com.drakkun.anko.basiccalculator;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
