@@ -21,6 +21,23 @@ class MainActivity : AppCompatActivity() {
     private val secondVal: String
         get() = secondEditText.text.toString()
 
+    private val answer: String
+        get() {
+            val firstNum = firstVal.toDouble()
+            val secondNum = secondVal.toDouble()
+            val checkedButton = radioOperations.checkedRadioButtonId
+
+            return when (checkedButton) {
+                R.id.radio_btn_add -> "${firstNum + secondNum}"
+                R.id.radio_btn_subtract -> "${firstNum - secondNum}"
+                R.id.radio_btn_multiply -> "${firstNum * secondNum}"
+                R.id.radio_btn_divide -> {
+                    if (secondNum.isZero()) "Cannot divide by 0"
+                    else "${firstNum.div(secondNum)}"
+                }
+                else -> "Please select an operation"
+            }
+        }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,29 +61,12 @@ class MainActivity : AppCompatActivity() {
 
         //Set answer button's on click method
         buttonCalculate.onClick {
-            if (firstVal.isEmpty() || secondVal.isEmpty()) {
-                toast("Please Enter 2 values")
-            }
-            else {
-                toast(answer())
-            }
-        }
-    }
-
-    private fun answer(): String {
-        val firstNum = firstVal.toDouble()
-        val secondNum = secondVal.toDouble()
-        val checkedButton = radioOperations.checkedRadioButtonId
-
-        return when (checkedButton) {
-            R.id.radio_btn_add -> "${firstNum + secondNum}"
-            R.id.radio_btn_subtract -> "${firstNum - secondNum}"
-            R.id.radio_btn_multiply -> "${firstNum * secondNum}"
-            R.id.radio_btn_divide -> {
-                if (secondNum.equals(0.0)) "Cannot divide by 0"
-                else "${firstNum.div(secondNum)}"
-            }
-            else -> "Please select an operation"
+            if (firstVal.isEmpty() || secondVal.isEmpty()) toast("Please Enter 2 values")
+            else toast(answer)
         }
     }
 }
+
+//Extension function fun!
+//By adding 0 to a Double, we can convert all zero values (including -0) to 0.0 for easier zero value checking.
+fun Double.isZero() : Boolean = this + 0 == 0.0
