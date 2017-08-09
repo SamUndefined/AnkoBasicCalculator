@@ -8,9 +8,9 @@
 .idea/
 app/libs/
 app/src/main/res/drawable/
-build.gradle
 gradle.properties
 gradle/
 gradlew
 gradlew.bat
 settings.gradle
+app-release.apk
